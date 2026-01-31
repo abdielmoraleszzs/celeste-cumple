@@ -1,0 +1,1270 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Feliz Cumpleaños Mi Amor ❤️</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Georgia', serif;
+            overflow-x: hidden;
+        }
+
+        /* Animación de corazones flotantes */
+        @keyframes float {
+            0%, 100% { transform: translateY(0) rotate(0deg); opacity: 0; }
+            10% { opacity: 1; }
+            90% { opacity: 1; }
+            100% { transform: translateY(-100vh) rotate(360deg); opacity: 0; }
+        }
+
+        .heart {
+            position: fixed;
+            font-size: 20px;
+            animation: float 8s infinite;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        /* Página Principal */
+        #main-page {
+            min-height: 100vh;
+            background: linear-gradient(135deg, #B8A9D4 0%, #DCC7E8 100%);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        #main-page.with-background {
+            background-image: url('imagenes/fondo_principal.jpg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+
+        #main-page.with-background::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.3);
+            z-index: 1;
+        }
+
+        #main-page::before {
+            content: '';
+            position: absolute;
+            width: 200%;
+            height: 200%;
+            background: 
+                radial-gradient(circle, rgba(255,255,255,0.1) 1px, transparent 1px),
+                radial-gradient(circle, rgba(255,255,255,0.1) 1px, transparent 1px);
+            background-size: 50px 50px;
+            background-position: 0 0, 25px 25px;
+            animation: moveStars 20s linear infinite;
+            z-index: 1;
+        }
+
+        @keyframes moveStars {
+            from { transform: translate(0, 0); }
+            to { transform: translate(50px, 50px); }
+        }
+
+        /* CONTADOR DE TIEMPO JUNTOS */
+        .time-counter {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 30px 40px;
+            border-radius: 20px;
+            margin-bottom: 30px;
+            z-index: 2;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            text-align: center;
+        }
+
+        .time-counter h3 {
+            color: #9D8CBF;
+            font-size: 1.5em;
+            margin-bottom: 15px;
+        }
+
+        .counter-display {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .counter-item {
+            text-align: center;
+        }
+
+        .counter-number {
+            font-size: 2.5em;
+            font-weight: bold;
+            color: #E8A0BF;
+        }
+
+        .counter-label {
+            font-size: 0.9em;
+            color: #666;
+            margin-top: 5px;
+        }
+
+        .main-title {
+            font-size: 3.5em;
+            color: white;
+            text-shadow: 3px 3px 6px rgba(0,0,0,0.3);
+            margin-bottom: 30px;
+            z-index: 2;
+            animation: pulse 2s ease-in-out infinite;
+            text-align: center;
+            padding: 0 20px;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        .button-container {
+            display: flex;
+            gap: 20px;
+            z-index: 2;
+            flex-wrap: wrap;
+            justify-content: center;
+            max-width: 90%;
+        }
+
+        .main-button {
+            padding: 20px 40px;
+            font-size: 1.3em;
+            background: white;
+            color: #9D8CBF;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+            transition: all 0.3s ease;
+            font-weight: bold;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .main-button::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            border-radius: 50%;
+            background: rgba(184, 169, 212, 0.3);
+            transform: translate(-50%, -50%);
+            transition: width 0.6s, height 0.6s;
+        }
+
+        .main-button.clicked::before {
+            width: 300px;
+            height: 300px;
+        }
+
+        @keyframes buttonBounce {
+            0%, 100% { transform: translateY(0) scale(1); }
+            25% { transform: translateY(-10px) scale(1.1); }
+            50% { transform: translateY(-5px) scale(1.05); }
+            75% { transform: translateY(-8px) scale(1.08); }
+        }
+
+        .main-button.bounce {
+            animation: buttonBounce 0.5s ease;
+        }
+
+        .main-button:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.3);
+            background: #F4C2D7;
+        }
+
+        .main-button:active {
+            transform: translateY(-2px) scale(0.98);
+        }
+
+        /* Página de Galería */
+        #gallery-page {
+            min-height: 100vh;
+            background: linear-gradient(135deg, #F4C2D7 0%, #FFE0EC 100%);
+            display: none;
+            padding: 40px;
+            position: relative;
+        }
+
+        .back-button {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            padding: 15px 30px;
+            background: rgba(255,255,255,0.9);
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 1.1em;
+            font-weight: bold;
+            color: #E8A0BF;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            transition: all 0.3s ease;
+            z-index: 10;
+        }
+
+        .back-button:hover {
+            transform: scale(1.1);
+            background: white;
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            max-width: 1200px;
+            margin: 80px auto 0;
+        }
+
+        .gallery-item {
+            position: relative;
+            height: 300px;
+            border-radius: 20px;
+            overflow: hidden;
+            cursor: pointer;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            transition: all 0.4s ease;
+        }
+
+        .gallery-item:hover {
+            transform: scale(1.05) rotate(2deg);
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .gallery-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
+            padding: 20px;
+            color: white;
+            font-size: 1.3em;
+            font-weight: bold;
+        }
+
+        /* Modal de imagen expandible */
+        .image-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.95);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .image-modal.active {
+            display: flex;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .modal-content {
+            max-width: 90%;
+            max-height: 90%;
+            position: relative;
+        }
+
+        .modal-image {
+            max-width: 100%;
+            max-height: 90vh;
+            object-fit: contain;
+            border-radius: 10px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+        }
+
+        .modal-close {
+            position: absolute;
+            top: -50px;
+            right: 0;
+            background: white;
+            border: none;
+            font-size: 2em;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            cursor: pointer;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .modal-close:hover {
+            transform: scale(1.1) rotate(90deg);
+            background: #E8A0BF;
+            color: white;
+        }
+
+        .modal-nav {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(255, 255, 255, 0.9);
+            border: none;
+            font-size: 2em;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .modal-nav:hover {
+            background: white;
+            transform: translateY(-50%) scale(1.1);
+        }
+
+        .modal-prev {
+            left: 20px;
+        }
+
+        .modal-next {
+            right: 20px;
+        }
+
+        /* Página de Detalle */
+        #detail-page {
+            min-height: 100vh;
+            background: linear-gradient(135deg, #A8D8EA 0%, #C5E3F6 100%);
+            display: none;
+            padding: 40px;
+            position: relative;
+        }
+
+        .detail-content {
+            max-width: 900px;
+            margin: 80px auto;
+            background: rgba(255,255,255,0.95);
+            padding: 40px;
+            border-radius: 30px;
+            box-shadow: 0 15px 50px rgba(0,0,0,0.2);
+        }
+
+        .detail-image {
+            width: 100%;
+            max-height: 650px;
+            object-fit: contain;
+            border-radius: 20px;
+            margin-bottom: 30px;
+            background: #f5f5f5;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .detail-image:hover {
+            transform: scale(1.02);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .music-player {
+            background: linear-gradient(135deg, #B8A9D4 0%, #9D8CBF 100%);
+            padding: 20px;
+            border-radius: 15px;
+            margin-bottom: 30px;
+            color: white;
+        }
+
+        .music-player h3 {
+            margin-bottom: 15px;
+        }
+
+        .music-link {
+            display: inline-block;
+            padding: 10px 20px;
+            background: white;
+            color: #9D8CBF;
+            text-decoration: none;
+            border-radius: 25px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            margin-right: 10px;
+        }
+
+        .music-link:hover {
+            transform: scale(1.1);
+            background: #F4C2D7;
+        }
+
+        .audio-controls {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-top: 15px;
+        }
+
+        .play-pause-btn {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: white;
+            border: none;
+            cursor: pointer;
+            font-size: 1.5em;
+            color: #9D8CBF;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+
+        .play-pause-btn:hover {
+            transform: scale(1.1);
+        }
+
+        .audio-bar {
+            flex: 1;
+            height: 8px;
+            background: rgba(255,255,255,0.3);
+            border-radius: 5px;
+            overflow: hidden;
+            cursor: pointer;
+        }
+
+        .audio-progress {
+            height: 100%;
+            background: white;
+            width: 0%;
+            transition: width 0.1s linear;
+        }
+
+        .time-display {
+            color: white;
+            font-size: 0.9em;
+            min-width: 100px;
+            text-align: right;
+        }
+
+        .message-box {
+            margin-top: 30px;
+            padding: 25px;
+            background: linear-gradient(135deg, #FFE0EC 0%, #F4C2D7 100%);
+            border-radius: 15px;
+            font-size: 1.2em;
+            line-height: 1.8;
+            color: #333;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        /* Página de Videos */
+        #videos-page {
+            min-height: 100vh;
+            background: linear-gradient(135deg, #B5E7C0 0%, #D4F1DD 100%);
+            display: none;
+            padding: 40px;
+            position: relative;
+        }
+
+        .videos-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+            max-width: 1200px;
+            margin: 80px auto 0;
+        }
+
+        .video-item {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 20px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .video-item:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .video-item h3 {
+            color: #E8A0BF;
+            margin-bottom: 15px;
+            font-size: 1.3em;
+        }
+
+        .video-item video {
+            width: 100%;
+            border-radius: 10px;
+            margin-bottom: 15px;
+        }
+
+        .video-description {
+            color: #666;
+            font-size: 1em;
+            line-height: 1.6;
+        }
+
+        /* Página de Ruleta */
+        #roulette-page {
+            min-height: 100vh;
+            background: linear-gradient(135deg, #DCC7E8 0%, #F4C2D7 100%);
+            display: none;
+            padding: 40px;
+            position: relative;
+        }
+
+        .roulette-container {
+            max-width: 600px;
+            margin: 100px auto;
+            text-align: center;
+        }
+
+        .roulette-title {
+            font-size: 2.5em;
+            color: white;
+            margin-bottom: 30px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .wheel-container {
+            position: relative;
+            margin: 50px auto;
+            width: 400px;
+            height: 400px;
+        }
+
+        .wheel-pointer {
+            position: absolute;
+            top: -40px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 0;
+            height: 0;
+            border-left: 20px solid transparent;
+            border-right: 20px solid transparent;
+            border-top: 40px solid #ff0000;
+            filter: drop-shadow(0 5px 10px rgba(0, 0, 0, 0.3));
+            z-index: 10;
+        }
+
+        .roulette-wheel {
+            width: 400px;
+            height: 400px;
+            margin: 0 auto;
+            position: relative;
+            border-radius: 50%;
+            border: 10px solid white;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
+            transition: transform 4s cubic-bezier(0.25, 0.1, 0.25, 1);
+            overflow: hidden;
+        }
+
+        /* CORREGIDO: Estilos de la ruleta */
+        .wheel-slice {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            clip-path: polygon(50% 50%, 100% 0%, 100% 100%);
+            transform-origin: center;
+        }
+
+        .wheel-text {
+            position: absolute;
+            top: 40%;
+            left: 70%;
+            transform: translate(-50%, -50%) rotate(0deg);
+            color: white;
+            font-weight: bold;
+            font-size: 1em;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+            width: 100px;
+            text-align: center;
+        }
+
+        .spin-button {
+            padding: 20px 50px;
+            font-size: 1.5em;
+            background: white;
+            color: #9D8CBF;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            font-weight: bold;
+            transition: all 0.3s ease;
+            margin-top: 30px;
+        }
+
+        .spin-button:hover {
+            transform: scale(1.1);
+            background: #F4C2D7;
+        }
+
+        .spin-button:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .roulette-result {
+            margin-top: 30px;
+            padding: 20px;
+            background: white;
+            border-radius: 20px;
+            font-size: 1.3em;
+            color: #9D8CBF;
+            font-weight: bold;
+            min-height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Página de Collage */
+        #collage-page {
+            min-height: 100vh;
+            background: linear-gradient(135deg, #C5E3F6 0%, #F4C2D7 100%);
+            display: none;
+            padding: 40px;
+            position: relative;
+        }
+
+        .collage-title {
+            text-align: center;
+            font-size: 2.5em;
+            color: white;
+            margin: 60px 0 40px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .collage-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            gap: 15px;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .collage-item {
+            aspect-ratio: 1;
+            overflow: hidden;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .collage-item:hover {
+            transform: scale(1.1) rotate(5deg);
+            z-index: 10;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+        }
+
+        .collage-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* Página de Información */
+        #info-page {
+            min-height: 100vh;
+            background: linear-gradient(135deg, #F8F5F2 0%, #DCC7E8 100%);
+            display: none;
+            padding: 40px;
+            position: relative;
+        }
+
+        .info-content {
+            max-width: 900px;
+            margin: 80px auto;
+            background: rgba(255,255,255,0.95);
+            padding: 50px;
+            border-radius: 30px;
+            box-shadow: 0 15px 50px rgba(0,0,0,0.2);
+        }
+
+        .info-content h2 {
+            color: #E8A0BF;
+            font-size: 2.5em;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        .info-text {
+            font-size: 1.2em;
+            line-height: 1.8;
+            color: #333;
+            text-align: justify;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .main-title {
+                font-size: 2em;
+            }
+
+            .main-button {
+                padding: 15px 30px;
+                font-size: 1.1em;
+            }
+
+            .wheel-container {
+                width: 300px;
+                height: 300px;
+            }
+
+            .roulette-wheel {
+                width: 300px;
+                height: 300px;
+            }
+
+            .counter-number {
+                font-size: 2em;
+            }
+
+            .time-counter {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Página Principal -->
+    <div id="main-page">
+        <div class="time-counter">
+            <h3> Tiempo Juntos 💕</h3>
+            <div class="counter-display">
+                <div class="counter-item">
+                    <div class="counter-number" id="years">0</div>
+                    <div class="counter-label">Años</div>
+                </div>
+                <div class="counter-item">
+                    <div class="counter-number" id="months">0</div>
+                    <div class="counter-label">Meses</div>
+                </div>
+                <div class="counter-item">
+                    <div class="counter-number" id="days">0</div>
+                    <div class="counter-label">Días</div>
+                </div>
+            </div>
+        </div>
+
+        <h1 class="main-title">Feliz Cumpleaños numero 22 mi cielo hermosa</h1>
+        
+        <div class="button-container">
+            <button class="main-button" onclick="animateButton(this, 'gallery')">📸 Fotoss</button>
+            <button class="main-button" onclick="animateButton(this, 'videos')">🎥 Videos</button>
+            <button class="main-button" onclick="animateButton(this, 'roulette')">🎡 Ruleta</button>
+            <button class="main-button" onclick="animateButton(this, 'collage')">🖼️ Collage</button>
+            <button class="main-button" onclick="animateButton(this, 'info')">ENTRA AQUI </button>
+            <button class="main-button" onclick="animateButton(this, 'exit')"> Salir</button>
+        </div>
+    </div>
+
+    <!-- Página de Galería -->
+    <div id="gallery-page">
+        <button class="back-button" onclick="showPage('main')">← Regresar</button>
+        <div class="gallery-grid">
+            <div class="gallery-item" onclick="showDetail(1)">
+                <img src="imagenes/imagen1.jpeg" alt="Momento 1">
+                <div class="gallery-overlay">Cuando me escape contigo</div>
+            </div>
+            <div class="gallery-item" onclick="showDetail(2)">
+                <img src="imagenes/imagen2.jpeg" alt="Momento 2">
+                <div class="gallery-overlay">Una sonrisa que paraliza de ternura</div>
+            </div>
+            <div class="gallery-item" onclick="showDetail(3)">
+                <img src="imagenes/imagen3.jpeg" alt="Momento 3">
+                <div class="gallery-overlay">somo tan iguales y al mismo tiempo tan diferentes</div>
+            </div>
+            <div class="gallery-item" onclick="showDetail(4)">
+                <img src="imagenes/imagen4.jpeg" alt="Momento 4">
+                <div class="gallery-overlay"> Que bonita eres</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal de Imagen Expandible -->
+    <div class="image-modal" id="imageModal">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeModal()">✕</button>
+            <button class="modal-nav modal-prev" onclick="navigateModal(-1)">‹</button>
+            <img class="modal-image" id="modalImage" src="" alt="Imagen expandida">
+            <button class="modal-nav modal-next" onclick="navigateModal(1)">›</button>
+        </div>
+    </div>
+
+    <!-- Página de Detalle -->
+    <div id="detail-page">
+        <button class="back-button" onclick="showPage('gallery')">← Regresar</button>
+        <div class="detail-content">
+            <img id="detail-img" class="detail-image" src="" alt="Nuestra foto" onclick="expandImage(this.src)">
+            
+            <div class="music-player">
+                <h3>🎵 Escucha nuestra canción:</h3>
+                <a id="music-link" href="#" target="_blank" class="music-link">▶️ tambien la puedes abrir en Spotify mi corazón</a>
+                
+                <div class="audio-controls">
+                    <button class="play-pause-btn" id="play-btn" onclick="toggleAudio()">▶️</button>
+                    <div class="audio-bar" onclick="seekAudio(event)">
+                        <div class="audio-progress" id="audio-progress"></div>
+                    </div>
+                    <div class="time-display" id="time-display">0:00 / 0:00</div>
+                </div>
+                <audio id="audio-player" style="display: none;">
+                    <source id="audio-source" src="" type="audio/mpeg">
+                </audio>
+            </div>
+            
+            <div class="message-box" id="message-box">
+                💕 Mensaje especial aquí 💕
+            </div>
+        </div>
+    </div>
+
+    <!-- Página de Videos -->
+    <div id="videos-page">
+        <button class="back-button" onclick="showPage('main')">← Regresar</button>
+        <div class="videos-grid">
+            <div class="video-item">
+                <h3>AAA se podria decir que formo parte de tu familia</h3>
+                <video controls>
+                    <source src="videos/video1.mp4" type="video/mp4">
+                    Tu navegador no soporta video.
+                </video>
+                <p class="video-description">
+                    No sabes como recuerdo este diaa JAJAJA tan bonito y chistoso y calientote por lo que paso en el baño
+                </p>
+            </div>
+            <div class="video-item">
+                <h3> Aun me siento ofendido por eso que hiciste</h3>
+                <video controls>
+                    <source src="videos/video2.mp4" type="video/mp4">
+                    Tu navegador no soporta video.
+                </video>
+                <p class="video-description">
+                    Gracias por los momentos tan lindos y divertidos y sobre todo gracias por estar conmigo y hacer planes con poco presupuesto 
+                </p>
+            </div>
+            <div class="video-item">
+                <h3>🌟 La negra y tu </h3>
+                <video controls>
+                    <source src="videos/video3.mp4" type="video/mp4">
+                    Tu navegador no soporta video.
+                </video>
+                <p class="video-description">
+                    Este video no recuerdo cuando lo enviaste la neta pero esta cagado ajajaa y siempre me da risa ver como tu y la negrita se quieren mucho y me gusta que aveces yo estoy con ustdes encajando y siendo feliz a su lado <3
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Página de Ruleta -->
+    <div id="roulette-page">
+        <button class="back-button" onclick="showPage('main')">← Regresar</button>
+        <div class="roulette-container">
+            <h2 class="roulette-title"> ¿Que haremos probablementeeeeee?</h2>
+            
+            <div class="wheel-container">
+                <div class="wheel-pointer"></div>
+                <div class="roulette-wheel" id="rouletteWheel"></div>
+            </div>
+
+            <button class="spin-button" id="spinButton" onclick="spinWheel()">
+                ¡GIRAR LA RULETOTA! 🎲
+            </button>
+
+            <div class="roulette-result" id="rouletteResult"></div>
+        </div>
+    </div>
+
+    <!-- Página de Collage -->
+    <div id="collage-page">
+        <button class="back-button" onclick="showPage('main')">← Regresar</button>
+        <h2 class="collage-title">Nuestros Momentos Juntosss</h2>
+        <div class="collage-grid" id="collageGrid"></div>
+    </div>
+
+    <!-- Página de Información -->
+    <div id="info-page">
+        <button class="back-button" onclick="showPage('main')">← Regresar</button>
+        <div class="info-content">
+            <h2>Desde el primer momento que te vi...</h2>
+            <div class="info-text" id="info-text">
+                <p>
+                    Recuerdo el primer momento en que te vi, simplemente eras una desconocida, alguien más en el camino. Después tuve la increíble oportunidad de conocerte, de ser tuyo, de estar a tu lado.
+                </p>
+                <p>
+                   Hoy que es tu cumpleaños quiero felicitarte de esta manera especial, regalándote mi tiempo, mis ganas y mi amor en esta pequeña página que, aunque no lo creas, hice en una noche entera pensando en ti.
+                   El caso no es ese. El caso aquí es que espero estés pasando un feliz cumpleaños y que así sean todos los que siguen.
+                   Sé que ya no estamos juntos y empiezo a creer que quizás ya no lo estaremos, pero quiero que sepas algo importante: no quiero conocer a nadie más. Mi búsqueda del amor de mi vida finalizó contigo.
+
+Siempre te elijo ante todo y sobre todo, porque sé que el día de mañana volveré a elegirte.
+
+Te amo mucho mi niña hermosa.
+                </p>
+                <p style="margin-top: 30px; text-align: center; font-size: 1.5em; color: #E8A0BF;">
+                    FELIZ CUMPLEAÑOS Y FELIZ VIDA ❤️
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+const startDate = new Date('2024-02-07T00:00:00'); 
+
+function updateCounter() {
+    const now = new Date();
+    let years = now.getFullYear() - startDate.getFullYear();
+    let months = now.getMonth() - startDate.getMonth();
+    let days = now.getDate() - startDate.getDate();
+
+    if (days < 0) {
+        months--;
+        const lastMonth = new Date(now.getFullYear(), now.getMonth(), 0);
+        days += lastMonth.getDate();
+    }
+
+    if (months < 0) {
+        years--;
+        months += 12;
+    }
+
+    document.getElementById('years').textContent = years;
+    document.getElementById('months').textContent = months;
+    document.getElementById('days').textContent = days;
+}
+
+updateCounter();
+setInterval(updateCounter, 1000);
+
+const rouletteOptions = [
+    { text: '🎬 Salida al Cine', color: '#B8A9D4' },
+    { text: '🚶 Ir a Caminar', color: '#A8D8EA' },
+    { text: '🌆 Cita en CDMX', color: '#F4C2D7' },
+    { text: '😴 Dormir', color: '#B5E7C0' },
+    { text: '🔥 Sexo', color: '#E8A0BF' }
+];
+
+let isSpinning = false;
+let currentRotation = 0;
+
+function createRouletteWheel() {
+    const wheel = document.getElementById('rouletteWheel');
+    const numOptions = rouletteOptions.length;
+    const anglePerSection = 360 / numOptions;
+    
+    rouletteOptions.forEach((option, index) => {
+        const slice = document.createElement('div');
+        slice.className = 'wheel-slice';
+        slice.style.background = option.color;
+        slice.style.transform = `rotate(${anglePerSection * index}deg)`;
+        
+        const text = document.createElement('div');
+        text.className = 'wheel-text';
+        text.textContent = option.text;
+        text.style.transform = `rotate(${anglePerSection / 2}deg)`;
+        
+        slice.appendChild(text);
+        wheel.appendChild(slice);
+    });
+}
+
+function spinWheel() {
+    if (isSpinning) return;
+    
+    isSpinning = true;
+    document.getElementById('spinButton').disabled = true;
+    document.getElementById('rouletteResult').textContent = 'Girando... 🎲 la ruleta es troll';
+    
+    const minSpins = 5;
+    const extraRotation = Math.random() * 360;
+    const totalRotation = (minSpins * 360) + extraRotation;
+    
+    currentRotation += totalRotation;
+    
+    const wheel = document.getElementById('rouletteWheel');
+    wheel.style.transform = `rotate(${currentRotation}deg)`;
+    
+    setTimeout(() => {
+        const normalizedRotation = currentRotation % 360;
+        const sectionAngle = 360 / rouletteOptions.length;
+        const selectedIndex = Math.floor(normalizedRotation / sectionAngle) % rouletteOptions.length;
+        
+        const result = rouletteOptions[selectedIndex];
+        document.getElementById('rouletteResult').innerHTML = 
+            `¡Tu premio es: <br><strong style="font-size: 1.5em;">${result.text}</strong>! 🎉`;
+        
+        isSpinning = false;
+        document.getElementById('spinButton').disabled = false;
+    }, 4000);
+}
+
+const collageImages = [
+    'imagenes/imagen1.jpeg',
+    'imagenes/imagen2.jpeg',
+    'imagenes/imagen3.jpeg',
+    'imagenes/imagen4.jpeg',
+    'imagenes/imagen5.jpeg',
+    'imagenes/imagen6.jpeg',
+    'imagenes/imagen7.jpeg',
+    'imagenes/imagen8.jpeg',
+    'imagenes/imagen9.jpeg',
+    'imagenes/imagen10.jpeg',
+    'imagenes/imagen11.jpeg',
+    'imagenes/imagen12.jpeg',
+    'imagenes/imagen13.jpeg',
+    'imagenes/imagen14.jpeg',
+    'imagenes/imagen15.jpeg',
+    'imagenes/imagen16.jpeg',
+    'imagenes/imagen17.jpeg',
+    'imagenes/imagen18.jpeg',
+    'imagenes/imagen19.jpeg',
+    'imagenes/imagen20.jpeg',
+    'imagenes/imagen21.jpeg',
+];
+
+function createCollage() {
+    const grid = document.getElementById('collageGrid');
+    collageImages.forEach(imgSrc => {
+        const item = document.createElement('div');
+        item.className = 'collage-item';
+        item.innerHTML = `<img src="${imgSrc}" alt="Momento especial">`;
+        item.onclick = () => expandImage(imgSrc);
+        grid.appendChild(item);
+    });
+}
+
+const detailData = {
+    1: {
+        image: 'imagenes/imagen1.jpeg',
+        musicLink: 'https://open.spotify.com/intl-es/track/2JXWGqA83AR8QDrYHnWabc?si=867666d341ba4485',
+        audioFile: 'musica/cancion1.mp3',
+        songTitle: 'Enjambre - Vinculo',
+        message: 'Esta canción me recuerda al grande vínculo que tenemos tú y yo, me encanta compartirla contigo :)'
+    },
+    2: {
+        image: 'imagenes/imagen2.jpeg',
+        musicLink: 'https://open.spotify.com/intl-es/track/09x9v1o51dbqi5H0u7UGfp?si=16793bc1e0a442ff',
+        audioFile: 'musica/cancion2.mp3',
+        songTitle: '<3',
+        message: 'no se esta cancion me parece muy bonita y me recuerda a ese momento en especifico donde te vi muy feliz mi amor ❤️'
+    },
+    3: {
+        image: 'imagenes/imagen3.jpeg',
+        musicLink: 'https://open.spotify.com/intl-es/track/2GvI8j0DaIAGvubj5NinEF?si=79af684b222043dd',
+        audioFile: 'musica/cancion3.mp3',
+        songTitle: 'Tercera Canción',
+        message: 'Me encanta esta canción porque realmente me siento tuyo y que te "puedes aprovechar de mí" '
+    },
+    4: {
+        image: 'imagenes/imagen4.jpeg',
+        musicLink: 'https://open.spotify.com/intl-es/track/1p4rYrxjVkj6v2eMzRhLfA?si=68afda17cd5d4016',
+        audioFile: 'musica/cancion4.mp3',
+        songTitle: 'Cuarta Canción',
+        message: 'Estoy muy cansado y ya no supe que foto poner pero bueno, que puedo decir sobre esta cancion? Es simplemente perfecta para ti y para mi ❤️'
+    }
+};
+
+let currentAudio = null;
+let currentDetailId = null;
+let currentImageIndex = 0;
+let currentImageList = [];
+
+function createHeart() {
+    const heart = document.createElement('div');
+    heart.classList.add('heart');
+    heart.innerHTML = '❤️';
+    heart.style.left = Math.random() * 100 + 'vw';
+    heart.style.animationDuration = (Math.random() * 3 + 5) + 's';
+    heart.style.fontSize = (Math.random() * 20 + 10) + 'px';
+    document.body.appendChild(heart);
+    
+    setTimeout(() => heart.remove(), 8000);
+}
+
+setInterval(createHeart, 500);
+
+function expandImage(src) {
+    if (detailData[currentDetailId]) {
+        currentImageList = [detailData[currentDetailId].image];
+        currentImageIndex = 0;
+    } else {
+        currentImageList = collageImages;
+        currentImageIndex = collageImages.indexOf(src);
+    }
+    
+    document.getElementById('modalImage').src = src;
+    document.getElementById('imageModal').classList.add('active');
+}
+
+function closeModal() {
+    document.getElementById('imageModal').classList.remove('active');
+}
+
+function navigateModal(direction) {
+    currentImageIndex += direction;
+    
+    if (currentImageIndex < 0) {
+        currentImageIndex = currentImageList.length - 1;
+    } else if (currentImageIndex >= currentImageList.length) {
+        currentImageIndex = 0;
+    }
+    
+    document.getElementById('modalImage').src = currentImageList[currentImageIndex];
+}
+
+document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') closeModal();
+    if (e.key === 'ArrowLeft') navigateModal(-1);
+    if (e.key === 'ArrowRight') navigateModal(1);
+});
+
+document.getElementById('imageModal').addEventListener('click', (e) => {
+    if (e.target.id === 'imageModal') closeModal();
+});
+
+function animateButton(button, action) {
+    button.classList.add('clicked');
+    setTimeout(() => button.classList.remove('clicked'), 600);
+    
+    button.classList.add('bounce');
+    setTimeout(() => button.classList.remove('bounce'), 500);
+    
+    setTimeout(() => {
+        if (action === 'exit') {
+            exitPage();
+        } else {
+            showPage(action);
+        }
+    }, 300);
+}
+
+function showPage(page) {
+    document.getElementById('main-page').style.display = 'none';
+    document.getElementById('gallery-page').style.display = 'none';
+    document.getElementById('detail-page').style.display = 'none';
+    document.getElementById('videos-page').style.display = 'none';
+    document.getElementById('roulette-page').style.display = 'none';
+    document.getElementById('collage-page').style.display = 'none';
+    document.getElementById('info-page').style.display = 'none';
+    
+    if (currentAudio) {
+        currentAudio.pause();
+        currentAudio.currentTime = 0;
+        document.getElementById('play-btn').innerHTML = '▶️';
+    }
+    
+    if (page === 'main') {
+        document.getElementById('main-page').style.display = 'flex';
+    } else if (page === 'gallery') {
+        document.getElementById('gallery-page').style.display = 'block';
+    } else if (page === 'videos') {
+        document.getElementById('videos-page').style.display = 'block';
+    } else if (page === 'roulette') {
+        document.getElementById('roulette-page').style.display = 'block';
+    } else if (page === 'collage') {
+        document.getElementById('collage-page').style.display = 'block';
+    } else if (page === 'info') {
+        document.getElementById('info-page').style.display = 'block';
+    }
+}
+
+function showDetail(id) {
+    currentDetailId = id;
+    const data = detailData[id];
+    
+    document.getElementById('detail-img').src = data.image;
+    document.getElementById('music-link').href = data.musicLink;
+    document.getElementById('message-box').innerHTML = data.message;
+    
+    const audioSource = document.getElementById('audio-source');
+    audioSource.src = data.audioFile;
+    
+    currentAudio = document.getElementById('audio-player');
+    currentAudio.load();
+    
+    showPage('detail');
+    document.getElementById('detail-page').style.display = 'block';
+}
+
+function toggleAudio() {
+    const audioPlayer = document.getElementById('audio-player');
+    const playBtn = document.getElementById('play-btn');
+    
+    if (audioPlayer.paused) {
+        audioPlayer.play();
+        playBtn.innerHTML = '⏸️';
+    } else {
+        audioPlayer.pause();
+        playBtn.innerHTML = '▶️';
+    }
+}
+
+document.getElementById('audio-player').addEventListener('timeupdate', function() {
+    const progress = (this.currentTime / this.duration) * 100;
+    document.getElementById('audio-progress').style.width = progress + '%';
+    
+    const currentMin = Math.floor(this.currentTime / 60);
+    const currentSec = Math.floor(this.currentTime % 60);
+    const totalMin = Math.floor(this.duration / 60);
+    const totalSec = Math.floor(this.duration % 60);
+    
+    document.getElementById('time-display').textContent = 
+        `${currentMin}:${currentSec.toString().padStart(2, '0')} / ${totalMin}:${totalSec.toString().padStart(2, '0')}`;
+});
+
+document.getElementById('audio-player').addEventListener('ended', function() {
+    document.getElementById('play-btn').innerHTML = '▶️';
+});
+
+function seekAudio(event) {
+    const audioPlayer = document.getElementById('audio-player');
+    const bar = event.currentTarget;
+    const clickX = event.offsetX;
+    const width = bar.offsetWidth;
+    const duration = audioPlayer.duration;
+    
+    audioPlayer.currentTime = (clickX / width) * duration;
+}
+
+function exitPage() {
+    if (confirm('¿Segura que quieres salir? 🥺')) {
+        window.close();
+        document.body.innerHTML = '<div style="display: flex; justify-content: center; align-items: center; height: 100vh; font-size: 2em; background: linear-gradient(135deg, #B8A9D4 0%, #DCC7E8 100%); color: white;">❤️ ¡Te amo! Hasta pronto ❤️</div>';
+    }
+}
+
+createRouletteWheel();
+createCollage();
+showPage('main');
+    </script>
+</body>
+</html>
